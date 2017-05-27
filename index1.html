@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>积分抽奖</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<h1>积分抽奖效果演示</h1>
+<div id="dowebok">
+    <div class="plate">
+        <a id="plateBtn" href="javascript:" title="开始抽奖"></a>
+    </div>
+    <div class="prize">
+        <h4>奖品设置</h4>
+        <ul>
+            <li><strong>一等奖：</strong>iphone 6 plus</li>
+            <li><strong>二等奖：</strong>iphone 6 （2名）</li>
+            <li><strong>三等奖：</strong>iPad Air 2 （5名）</li>
+            <li><strong>四等奖：</strong>充电宝 （20名）</li>
+        </ul>
+    </div>
+    <div id="result">
+        <p id="resultTxt"></p>
+        <a id="resultBtn" href="javascript:" title="关闭"></a>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.rotate.min.js"></script>
+<script>
+    $(function () {
+        var $plateBtn = $('#plateBtn');
+        var $result = $('#result');
+        var $resultTxt = $('#resultTxt');
+        var $resultBtn = $('#resultBtn');
+
+        $plateBtn.click(function () {
+            var arr = [0,1,2];
+            var data = arr[Math.floor(Math.random() * arr.length)];
+            switch (data){
+                case 1:
+                    rotateFunc(0, 114, '谢谢参与，请再接再厉');
+                    break;
+                case 2:
+                    rotateFunc(1, 24, '谢谢参与，请再接再厉');
+                    break;
+                case 3:
+                    rotateFunc(2, 292, '谢谢参与，请再接再厉');
+                    break;
+            }
+        });
+
+        var rotateFunc = function (awards, angle, text) {
+            $plateBtn.stopRotate();
+            $plateBtn.rotate({
+                angle: 0,  //角度
+                duration: 5000, //持续时间
+                animateTo: angle + (360*4),
+                callback: function () {
+                    $resultTxt.html(text);
+                    $result.show();
+                }
+            });
+        };
+        $resultBtn.click(function () {
+            $result.hide();
+        })
+
+    })
+
+
+
+
+
+</script>
+</body>
+</html>
